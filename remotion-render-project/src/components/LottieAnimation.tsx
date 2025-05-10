@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 import animationData from '../assets/animation.json';
-import { staticFile } from 'remotion';
+import { staticFile, Audio } from 'remotion';
 
 interface LottieAnimationProps {
   isPaused?: boolean;
@@ -19,7 +19,7 @@ const LottieAnimation: React.FC<LottieAnimationProps> = ({
     ...animationData,
     assets: animationData.assets.map((asset) => ({
       ...asset,
-      u: staticFile('assets/images/'), // Use staticFile to resolve the base path
+      u: staticFile('assets/images/'),
     })),
   };
 
@@ -35,12 +35,15 @@ const LottieAnimation: React.FC<LottieAnimationProps> = ({
   };
 
   return (
-    <Lottie
-      options={defaultOptions}
-      isPaused={isPaused}
-      isStopped={isStopped}
-      speed={speed}
-    />
+    <div>
+      <Lottie
+        options={defaultOptions}
+        isPaused={isPaused}
+        isStopped={isStopped}
+        speed={speed}
+      />
+      <Audio src={staticFile('assets/audio/audio.mp3')} />
+    </div>
   );
 };
 
